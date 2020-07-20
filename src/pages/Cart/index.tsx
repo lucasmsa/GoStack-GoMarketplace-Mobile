@@ -7,7 +7,7 @@ import {
   Container,
   ProductContainer,
   ProductList,
-  Product,
+  Products,
   ProductImage,
   ProductTitleContainer,
   ProductTitle,
@@ -39,23 +39,23 @@ const Cart: React.FC = () => {
   const { increment, decrement, products } = useCart();
 
   function handleIncrement(id: string): void {
-    // TODO
+    increment(id);
   }
 
   function handleDecrement(id: string): void {
-    // TODO
+    decrement(id);
   }
 
   const cartTotal = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
+    const cartTotalSum = products.reduce((a, b) => a + b.quantity * b.price, 0);
 
-    return formatValue(0);
+    return formatValue(cartTotalSum);
   }, [products]);
 
   const totalItensInCart = useMemo(() => {
-    // TODO RETURN THE SUM OF THE QUANTITY OF THE PRODUCTS IN THE CART
+    const quantitySum = products.reduce((a, b) => a + b.quantity, 0);
 
-    return 0;
+    return quantitySum;
   }, [products]);
 
   return (
@@ -69,7 +69,8 @@ const Cart: React.FC = () => {
             height: 80,
           }}
           renderItem={({ item }: { item: Product }) => (
-            <Product>
+            <Products>
+              {console.log(item)}
               <ProductImage source={{ uri: item.image_url }} />
               <ProductTitleContainer>
                 <ProductTitle>{item.title}</ProductTitle>
@@ -101,7 +102,7 @@ const Cart: React.FC = () => {
                   <FeatherIcon name="minus" color="#E83F5B" size={16} />
                 </ActionButton>
               </ActionContainer>
-            </Product>
+            </Products>
           )}
         />
       </ProductContainer>

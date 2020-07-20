@@ -18,7 +18,7 @@ export const ProductList = styled(FlatList)`
   padding: 0 10px;
 `;
 
-export const Product = styled.View`
+export const Products = styled.View`
   background: #fff;
   padding: 15px 10px;
   border-radius: 5px;
